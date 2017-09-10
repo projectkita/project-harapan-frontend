@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+  <md-button class="md-raised md-primary">Hello World</md-button>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
