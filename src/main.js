@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-var Vue = require('vue')
-var VueMaterial = require('vue-material')
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
 
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
