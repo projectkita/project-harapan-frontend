@@ -1,17 +1,51 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router'
+import VueRouter from 'vue-router'
+import vClickOutside from 'v-click-outside'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 
-Vue.config.productionTip = false
+// Plugins
+import GlobalComponents from './gloablComponents'
+import Notifications from './components/UIComponents/NotificationPlugin'
+import SideBar from './components/UIComponents/SidebarPlugin'
+import App from './App'
+
+// router setup
+import routes from './routes/routes'
+
+// library imports
+import Chartist from 'chartist'
+import 'bootstrap/dist/css/bootstrap.css'
+import './assets/sass/paper-dashboard.scss'
+import 'es6-promise/auto'
+
+// plugin setup
 Vue.use(VueMaterial)
+Vue.use(VueRouter)
+Vue.use(GlobalComponents)
+Vue.use(vClickOutside)
+Vue.use(Notifications)
+Vue.use(SideBar)
+
+// configure router
+const router = new VueRouter({
+  routes, // short for routes: routes
+  linkActiveClass: 'active'
+})
+
+// global library setup
+Object.defineProperty(Vue.prototype, '$Chartist', {
+  get () {
+    return this.$root.Chartist
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  render: h => h(App),
   router,
-  template: '<App/>',
-  components: { App }
+  data: {
+    Chartist: Chartist
+  }
 })
